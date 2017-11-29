@@ -22,11 +22,11 @@ NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 // Write query to retrieve all order headers
 connect();
 PreparedStatement pstmt1 = con.prepareStatement(
-	"SELECT O.id,U.id,U.firstname,U.lastname,O.total FROM `Order` O, User U WHERE "+
+	"SELECT O.id AS order_id,U.id AS user_id,U.firstname,U.lastname,O.total FROM `Order` O, User U WHERE "+
 	"O.user_id = U.id"
 );
 PreparedStatement pstmt2 = con.prepareStatement(
-	"SELECT P.id, quantity, P.price FROM OrderProduct OP, Product P WHERE "+
+	"SELECT P.id AS product_id, quantity, P.price FROM OrderProduct OP, Product P WHERE "+
 	"OP.product_id = P.id AND OP.order_id = ?"
 );
 ResultSet rs1 = pstmt1.executeQuery();
@@ -38,7 +38,7 @@ int columnCount2;
 //Print headers
 out.println("<thead><tr>");
 for(int i = 1; i <= columnCount1; i++) {
-	out.println("<th>"+rsmd1.getColumnName(i)+"</th>");
+	out.println("<th>"+rsmd1.getColumnLabel(i)+"</th>");
 }
 out.println("</tr></thead>");
 out.println("<tbody>");
@@ -53,7 +53,7 @@ while(rs1.next()) {
 	columnCount2 = rsmd2.getColumnCount();
 	out.println("<tr align=\"right\"><td colspan=\"4\"><table border=\"1\"><thead><tr>");
 	for(int i = 1; i <= columnCount2; i++) {
-		out.println("<th>"+rsmd2.getColumnName(i)+"</th>");
+		out.println("<th>"+rsmd2.getColumnLabel(i)+"</th>");
 	}
 	out.println("</td></tr></thead><tbody>");
 	while(rs2.next()) {
