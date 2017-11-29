@@ -26,6 +26,8 @@ CREATE TABLE User (
   firstname varchar(32),
   lastname varchar(32),
   admin tinyint,
+  session_id varchar(32),
+  session_expire timestamp,
   PRIMARY KEY (id),
   FOREIGN KEY (location_id) REFERENCES Location(id)
 );
@@ -76,29 +78,29 @@ CREATE TABLE WarehouseProduct (
   FOREIGN KEY (product_id) REFERENCES Product(id)
 );
 
-INSERT INTO Location VALUES 
+INSERT INTO Location VALUES
 (NULL,'123 Main Street','B4X2T6','Kelowna','BC','Canada'),
 (NULL,'554 Name Ave','F3D7H4','Seattle','WA','USA');
 
-INSERT INTO User VALUES 
+INSERT INTO User VALUES
 (NULL,1,'johnnyboy','plainpass','john@doe.ca','John','Doe',0),
 (NULL,2,'siteadmin','adminpass','admin@localhost','Mister','Admin',1),
 (NULL,NULL,'vagrant','password','guy@outlook.com','Mysterious','Stanger',0);
 
-INSERT INTO Product VALUES 
+INSERT INTO Product VALUES
 (NULL,1000.00,10,'iPhone X','Phones','Pushing monetary boundries',NULL),
 (NULL,500.00,10,'Andriod','Phones','Nothing special',NULL),
 (NULL,0.01,1000,'Blackberry','Phones','Please take it',NULL),
 (NULL,3000,1,'Alienware XXX Turbomaster','Laptops','Great if you have too much money',NULL);
 
-INSERT INTO `Order` VALUES 
+INSERT INTO `Order` VALUES
 (NULL,1,NULL,500.01,1);
 
-INSERT INTO OrderProduct VALUES 
+INSERT INTO OrderProduct VALUES
 (1,2,1),(1,3,1);
 
-INSERT INTO Warehouse VALUES 
+INSERT INTO Warehouse VALUES
 (NULL,1);
 
-INSERT INTO WarehouseProduct VALUES 
+INSERT INTO WarehouseProduct VALUES
 (1,1,1);
