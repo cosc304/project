@@ -1,7 +1,7 @@
-DROP TABLE OrderedProduct;
-DROP TABLE Orders;
-DROP TABLE Product;
-DROP TABLE Customer;
+DROP TABLE IF EXISTS OrderedProduct;
+DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS Product;
+DROP TABLE IF EXISTS Customer;
 
 CREATE TABLE Product (
    productId	int NOT NULL,
@@ -27,10 +27,10 @@ CREATE TABLE Customer (
 
 
 CREATE TABLE Orders (
-   orderId 	int 	NOT NULL IDENTITY PRIMARY KEY,
+   orderId 	int 	NOT NULL AUTO_INCREMENT PRIMARY KEY,
    customerId 	int,
-   totalAmount 	decimal(9,2)
-   CONSTRAINT FK_Orders_Customer FOREIGN KEY (customerId) REFERENCES customer(customerId)
+   totalAmount 	decimal(9,2),
+   CONSTRAINT FK_Orders_Customer FOREIGN KEY (customerId) REFERENCES Customer(customerId)
 );
 
 
