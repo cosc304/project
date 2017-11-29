@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS Location;
-DROP TABLE IF EXISTS User;
-DROP TABLE IF EXISTS Product;
-DROP TABLE IF EXISTS Order;
-DROP TABLE IF EXISTS OrderProduct;
-DROP TABLE IF EXISTS Warehouse;
 DROP TABLE IF EXISTS WarehouseProduct;
+DROP TABLE IF EXISTS Warehouse;
+DROP TABLE IF EXISTS OrderProduct;
+DROP TABLE IF EXISTS `Order`;
+DROP TABLE IF EXISTS Product;
+DROP TABLE IF EXISTS User;
+DROP TABLE IF EXISTS Location;
 
 CREATE TABLE Location (
   id int AUTO_INCREMENT NOT NULL,
@@ -32,7 +32,6 @@ CREATE TABLE User (
 CREATE TABLE Product (
   id int AUTO_INCREMENT NOT NULL,
   price double(6,2),
-  grade tinyint,
   inventory int,
   name varchar(32),
   category varchar(32),
@@ -41,12 +40,14 @@ CREATE TABLE Product (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE Order (
+CREATE TABLE `Order` (
   id int AUTO_INCREMENT NOT NULL,
+  user_id int,
   time datetime,
   total double(8,2),
   cart tinyint,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id) REFERENCES User(id)
 );
 
 CREATE TABLE OrderProduct (
@@ -54,7 +55,7 @@ CREATE TABLE OrderProduct (
   product_id int,
   quantity int,
   PRIMARY KEY (order_id, product_id),
-  FOREIGN KEY (order_id) REFERENCES Order(id),
+  FOREIGN KEY (order_id) REFERENCES `Order`(id),
   FOREIGN KEY (product_id) REFERENCES Product(id)
 );
 
@@ -74,23 +75,29 @@ CREATE TABLE WarehouseProduct (
   FOREIGN KEY (product_id) REFERENCES Product(id)
 );
 
-INSERT INTO Location VALUES
+INSERT INTO Location VALUES 
 (NULL,'123 Main Street','B4X2T6','Kelowna','BC','Canada'),
 (NULL,'554 Name Ave','F3D7H4','Seattle','WA','USA');
 
-INSERT INTO User VALUES
+INSERT INTO User VALUES 
 (NULL,1,'johnnyboy','plainpass','john@doe.ca','John','Doe',0),
 (NULL,2,'siteadmin','adminpass','admin@localhost','Mister','Admin',1),
 (NULL,NULL,'vagrant','password','guy@outlook.com','Mysterious','Stanger',0);
 
-INSERT INTO Product VALUES
-(NULL,1000.00,0,10,'iPhone X','Phones','Pushing monetary boundries',NULL),
-(NULL,500.00,0,10,'Andriod','Phones','Nothing special',NULL),
-(NULL,0.01,0,1000,'Blackberry','Phones','Please take it',NULL),
-(NULL,100000,0,1,'Alienware XXX Turbomaster','Laptops','Great if you have too much money',NULL)
+INSERT INTO Product VALUES 
+(NULL,1000.00,10,'iPhone X','Phones','Pushing monetary boundries',NULL),
+(NULL,500.00,10,'Andriod','Phones','Nothing special',NULL),
+(NULL,0.01,1000,'Blackberry','Phones','Please take it',NULL),
+(NULL,3000,1,'Alienware XXX Turbomaster','Laptops','Great if you have too much money',NULL);
 
-INSERT INTO Warehouse VALUES
+INSERT INTO `Order` VALUES 
+(NULL,1,NULL,500.01,1);
+
+INSERT INTO OrderProduct VALUES 
+(1,2,1),(1,3,1);
+
+INSERT INTO Warehouse VALUES 
 (NULL,1);
 
-INSERT INTO WarehouseProduct VALUES
-(NULL,1,1,1);
+INSERT INTO WarehouseProduct VALUES 
+(1,1,1);
