@@ -13,7 +13,8 @@ CREATE TABLE Location (
   city varchar(32),
   province char(2),
   country varchar(32),
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  UNIQUE (address,postalcode,city,province,country)
 );
 
 CREATE TABLE User (
