@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>REG</title>
@@ -14,7 +14,7 @@
 <header>
 
   
-   <a href="main.jsp">Home</a> |
+   <a href="index.jsp">Home</a> |
      <style>
 .mainRight{
 
@@ -40,12 +40,13 @@
 <%
  //       String m=null, mn=null;
 
-        String s=request.getParameter("name");
-        String s1=request.getParameter("id");
-        String s2=request.getParameter("password");
-        String s3=request.getParameter("date");
-        String s4=request.getParameter("address");
-		String s5=request.getParameter("phone");
+        String s=request.getParameter("userName");
+        String s1=request.getParameter("password");
+        String s2=request.getParameter("email");
+        String s3=request.getParameter("firstname");
+        String s4=request.getParameter("lastname");
+		String s5=request.getParameter("loc_id");
+		
         PreparedStatement ps;
         Connection con;
         ResultSet rs= null;
@@ -54,13 +55,15 @@
       
          Statement st=con.createStatement();
        
-          ps= con.prepareStatement("insert into register1 values (?,?,?,?,?,?)");
-            ps.setString(1,s);
-            ps.setString(2,s1);
-            ps.setString(3,s2);
-            ps.setString(4,s3);
-            ps.setString(5,s4);
-           ps.setString(6,s5);
+          ps= con.prepareStatement("insert into User values (?,?,?,?,?,?,?,?,?,?)");
+          
+          
+          	ps.setString(2,s5);
+            ps.setString(3,s);
+            ps.setString(4,s1);
+            ps.setString(5,s2);
+            ps.setString(6,s3);
+           ps.setString(7,s4);
                int addResult = ps.executeUpdate();
              if (addResult!=0)
             {
@@ -68,7 +71,14 @@
             }          
         %>
         <br><hr>
-               To Login <a href="login.jsp">Click Here</a>
-                <hr>
+<script>
+function Redirect()
+{
+    window.location="index.jsp";
+}
+document.write("Redirecting you to the main page in just a few seconds.");
+setTimeout('Redirect()', 5000);
+</script>
+   <hr>
 </body>
 </html>

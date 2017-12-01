@@ -12,13 +12,13 @@
 
 <body>
 <header>
-   <a href="main.jsp">Home</a> |
+   <a href="index.jsp">Home</a> |
       <% if(session.getAttribute("uname")==null) { 
 			%>
       <a href="login.jsp">Login</a>
        <%} else {
 				%>
-       <a href="logout.jsp"><%out.print(session.getAttribute("uname"));  %></a> <a href="logout.jsp">Logout</a><% //showing user name if user logged in%>
+       <a href="logout.jsp"><%out.print(session.getAttribute("uname"));  %> | </a> <a href="logout.jsp">Logout</a><% //showing user name if user logged in%>
         <%}%>
  </header>
  <center> 
@@ -28,15 +28,15 @@
   </tr>
 </table>
 <hr />
-
-<% if(session.getAttribute("uname") != null) {
+<% session.setAttribute("uname", null);
+ if(session.getAttribute("uname") != null) {
 	session.invalidate();
 	out.println("You have successfully logged out.");
 	%>
     <script type="text/javascript">
 function Redirect()
 {
-    window.location="projshop.jsp";
+    window.location="index.jsp";
 }
 document.write("Redirecting you to the main page in just a few seconds.");
 setTimeout('Redirect()', 5000);
@@ -46,7 +46,7 @@ setTimeout('Redirect()', 5000);
 else
 {%>
 You're already Logged out. 
-Click <a href="main.jsp">here</a> to go to the home page.
+Click <a href="index.jsp">here</a> to go to the home page.
 <%}%>
 </body>
 </html>

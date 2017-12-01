@@ -15,7 +15,7 @@
 <header>
 
   
-   <a href="projshop.jsp">Home</a> |
+   <a href="index.jsp">Home</a> |
 
  <% if(session.getAttribute("uname")==null) { 
 	 
@@ -39,7 +39,7 @@
 	 <script type="text/javascript">
 function Redirect()
 {
-    window.location="projshop.jsp";
+    window.location="index.jsp";
 }
 document.write("Redirecting you to the main page in just a few seconds.");
 setTimeout('Redirect()', 5000);
