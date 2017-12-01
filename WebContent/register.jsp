@@ -11,42 +11,37 @@
 </head>
 
 <body>
- <header>
 
-  
-   <a href="main.jsp">Home</a> |
-      <% if(session.getAttribute("uname")==null) { 
-			%>
-      <a href="login.jsp">Login</a>
-       <%} else {
-				%>
-       <a href="logout.jsp"><%out.print(session.getAttribute("uname"));  %></a> <a href="logout.jsp">Logout</a><% //showing user name if user logged in%>
-        <%}%>
- </header>
- <center> 
+<%@ include file="header.jsp" %>
+
+<center>
 <table width="900" height="120" border="0" border-color = "green">
-  <tr>
-    <td width="240" height="85"><img src="head.png" width="251" height="88" alt="Logo" /></td><%//NO IMAGE %>
-  </tr>
+    <tr>
+        <td width="240" height="85"><img src="head.png" width="251" height="88" alt="Logo" /></td>
+    </tr>
 </table>
    <strong><em>Register here</em></strong>
-   <form action="registration_process.jsp"><table><b>
-            <tr><td>User Name   </td><td><input type="text" name="userName"></td></tr>
-            <tr><td>Password   </td><td><input type="password" name="password"></td></tr>
-            <tr><td>Email      </td><td><input type="email" name="email"></td></tr>
-            <tr><td>First Name </td><td><input type="text" name="firstname"></td></tr>
-            <tr><td>Last Name  </td><td><input type="text" name="lastname"></td></tr>
-            <tr><td>Location id</td><td><input type="text" name="loc_id"></td></tr>
-                
-                
-                <br>
-                </b></table><br />
-     <input type="submit" value="Register" />
-                    </form>
-            <br><hr>
-           Are You Already Registered? To Login Click<a href="login.jsp"> Here</a>
-                <hr>
-                
+   <form action="registration_process.jsp">
+        <table>
+            <b>
+                <tr><td>User Name   </td><td><input type="text" name="userName"></td></tr>
+                <tr><td>Password   </td><td><input type="password" name="password"></td></tr>
+                <tr><td>Email      </td><td><input type="email" name="email"></td></tr>
+                <tr><td>First Name </td><td><input type="text" name="firstname"></td></tr>
+                <tr><td>Last Name  </td><td><input type="text" name="lastname"></td></tr>
+                <tr><td>Location id</td><td><input type="text" name="loc_id"></td></tr>
+
+                <br />
+            </b>
+        </table>
+        <br />
+        <input type="submit" value="Register" />
+    </form>
+    <br />
+    <hr />
+    Are You Already Registered? To Login Click<a href="login.jsp"> Here</a>
+    <hr />
+
     </center>
 </body>
 </html>

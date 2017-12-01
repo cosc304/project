@@ -34,56 +34,35 @@ section {
 <%@ page import="java.sql.DriverManager.*" %>
 <div class="container">
 
-<header>
-  <tr>
-   <td width="205" height="89"><img src="pictures/logo.png" width="251" height="88" alt="Logo" />
-    <hr /></td>
-        <td width="713" class="right">Welcome to CP shopping! | <a href="index.jsp">Home</a> | <a href="listProduct.jsp">All Product</a>
-        <% if(session.getAttribute("uname")==null) {
-			%>
-           | <a href="login.jsp">Login</a> | <a href="register.jsp">Signup</a> | <a href="showCart.jsp">ShoppingCart</a>
-            <%} else {
-				%>
-                <a href="logout.jsp">Logout</a>
-                <%}%>
-                </td>
-      </tr>
-      <tr>
-        <td><form id="form1" name="form1" method="post" action="search.jsp">
-          <input name="search" type="text" id="search" size="60" />
-          <label>
-            <input type="submit" name="submit" id="button" value="Search" />
-          </label>
-        </form></td>
-      </tr>
-</header>
+<%@ include file="header.jsp" %>
+
 <section>
 <hr />
 <p>Search Results:</p>
 <p>
-<% 
+<%
        PreparedStatement ps;
         Connection con;
         ResultSet rs= null,rs1=null,rs2=null;
        Class.forName("com.mysql.jdbc.Driver");
         con=DriverManager.getConnection("jdbc:mysql://cosc304.ok.ubc.ca/db_kvankes", "kvankes", "37845138");
-      
+
          Statement st=con.createStatement();
-%> 
-<% 
-boolean flag = false; 
-String search = request.getParameter ("search");  
 %>
-<% 
-String pid=null; 
+<%
+boolean flag = false;
+String search = request.getParameter ("search");
+%>
+<%
+String pid=null;
 search="%"+search+"%";
-try {  
-ps = con.prepareStatement ("SELECT product.id, product.name, product.price from product where name like ?"); 
-ps.setString (1,search); 
-rs = ps.executeQuery (); 
+try {
+ps = con.prepareStatement ("SELECT product.id, product.name, product.price from product where name like ?");
+ps.setString (1,search);
+rs = ps.executeQuery ();
 if (rs.next ()) {
     flag = true;
-%>	
+%>
 	<p><table width="992" height="179" border="0">
   <%do
 		 {%>
@@ -98,9 +77,9 @@ if (rs.next ()) {
 			 %>
     <table width="120" height="133" border="0" align="center">
               <tr>
-                <td><form action="productDetail.jsp"> 
-<input type="hidden" name="product" value=<%=rs1.getString(1)%>> 
-<input name="buy" type="image" value="Image" src=<%=rs1.getString(7)%> width="73" height="105"> 
+                <td><form action="productDetail.jsp">
+<input type="hidden" name="product" value=<%=rs1.getString(1)%>>
+<input name="buy" type="image" value="Image" src=<%=rs1.getString(7)%> width="73" height="105">
 </form></td>
               </tr>
               <%}%>
@@ -111,20 +90,20 @@ if (rs.next ()) {
 		 rs2=ps.executeQuery();
 		 while(rs2.next())
 		 {%>
-              
-              
+
+
                 </td>
                 <td width="791"><p><%=rs2.getString(1)%> <%=rs2.getString(4)%></p>
-		   <p>$ <%=rs2.getString(2)%></p><%}%></td></tr><%}while(rs.next());%> 
-</table> 
+		   <p>$ <%=rs2.getString(2)%></p><%}%></td></tr><%}while(rs.next());%>
+</table>
 
-<%} else { 
+<%} else {
 %>
-<jsp:forward page="searchfail.jsp"/> 
+<jsp:forward page="searchfail.jsp"/>
  <%
 }
-} catch (Exception e) { 
-out.println (e); 
+} catch (Exception e) {
+out.println (e);
 } %>
 </p>
 </section>

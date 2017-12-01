@@ -14,72 +14,50 @@
 </head>
 
 <body>
-<header>
 
-  
-   <a href="index.jsp">Home</a> |
-     <style>
-.mainRight{
+<%@ include file="header.jsp" %>
 
-}
-</style>
- <% if(user_id==0) { 
-%>
-      <a href="login.jsp" class = "mainRight">Login</a>
-       <%} else {
-				%>
-       <a href="logout.jsp" class = "mainRight"><%out.print(user_username);  %></a> <% //showing user name if user logged in%>
-        <%}%>  
- </header>
- <center> 
+<center>
 <table width="900" height="120" border="0">
-  <tr>
-    <td width="251" height="96"> <!-- <img src="head.png" width="251" height="88" alt="Logo" /></td>//NO IMAGE -->
-  </tr>
+    <tr>
+        <td width="251" height="96"> <!-- <img src="head.png" width="251" height="88" alt="Logo" /></td>//NO IMAGE -->
+    </tr>
 </table>
-       
+
 <%
  //       String m=null, mn=null;
+String s=request.getParameter("userName");
+String s1=request.getParameter("password");
+String s2=request.getParameter("email");
+String s3=request.getParameter("firstname");
+String s4=request.getParameter("lastname");
+//String s5=request.getParameter("loc_id");
 
-        String s=request.getParameter("userName");
-        String s1=request.getParameter("password");
-        String s2=request.getParameter("email");
-        String s3=request.getParameter("firstname");
-        String s4=request.getParameter("lastname");
-		//String s5=request.getParameter("loc_id");
-		
-        PreparedStatement ps;
+PreparedStatement ps = con.prepareStatement("insert into User values (?,?,?,?,?,?,?,?,?)");
 
-
-      	connect();
-      	
-       
-          ps= con.prepareStatement("insert into User values (?,?,?,?,?,?,?,?,?)");
-          
-			 ps.setInt(1,0);
-			ps.setString(2,null);
-			 ps.setString(3,s);
-			 ps.setString(4,s1);
-			ps.setString(5,s2);
-			ps.setString(6,s3);
-			ps.setString(7,s4);
-			ps.setInt(8,0);
-			ps.setString(9, session.getId());
-               int addResult = ps.executeUpdate();
-             if (addResult!=0)
-            {
-                 out.println("Successfully registered");
-            }          
-        %>
-        <br><hr>
-<script>
-function Redirect()
+ps.setInt(1,0);
+ps.setString(2,null);
+ps.setString(3,s);
+ps.setString(4,s1);
+ps.setString(5,s2);
+ps.setString(6,s3);
+ps.setString(7,s4);
+ps.setInt(8,0);
+ps.setString(9, session.getId());
+int addResult = ps.executeUpdate();
+if (addResult!=0)
 {
-    window.location="index.jsp";
+    out.println("Successfully registered");
 }
+%>
+<br><hr>
+
+<script>
+function Redirect() { window.location="index.jsp";}
 document.write("Redirecting you to the main page in just a few seconds.");
 setTimeout('Redirect()', 5000);
 </script>
-   <hr>
+
+<hr>
 </body>
 </html>

@@ -13,16 +13,9 @@
 </head>
 
 <body>
-<header>
-<a href="index.jsp">Home</a> |
-<%
-if(user_id == 0) {
-%>
-<a href="login.jsp">Login</a>
-<%} else {%>
-<a href="logout.jsp"><%out.print(user_username);%> | </a> <a href="logout.jsp">Logout</a>
-<%}%>
- </header>
+
+<%@ include file="header.jsp" %>
+
  <center>
 <table width="900" height="120" border="0" border-color = "green">
   <tr>
