@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
+<%@ include file= "session.jsp" %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -20,12 +23,12 @@
 
 }
 </style>
- <% if(session.getAttribute("uname")==null) { 
-			%>
+ <% if(user_id==0) { 
+%>
       <a href="login.jsp" class = "mainRight">Login</a>
        <%} else {
 				%>
-       <a href="logout.jsp" class = "mainRight"><%out.print(session.getAttribute("uname"));  %></a> <% //showing user name if user logged in%>
+       <a href="logout.jsp" class = "mainRight"><%out.print(user_username);  %></a> <% //showing user name if user logged in%>
         <%}%>  
  </header>
  <center> 
@@ -34,8 +37,6 @@
     <td width="251" height="96"> <!-- <img src="head.png" width="251" height="88" alt="Logo" /></td>//NO IMAGE -->
   </tr>
 </table>
-        <%@ page import="java.sql.*" %>
-         <%@ page import="java.sql.DriverManager.*" %>
        
 <%
  //       String m=null, mn=null;
@@ -45,25 +46,25 @@
         String s2=request.getParameter("email");
         String s3=request.getParameter("firstname");
         String s4=request.getParameter("lastname");
-		String s5=request.getParameter("loc_id");
+		//String s5=request.getParameter("loc_id");
 		
         PreparedStatement ps;
-        Connection con;
-        ResultSet rs= null;
-       Class.forName("oracle.jdbc.driver.OracleDriver");
-        con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","sizgooml");
-      
-         Statement st=con.createStatement();
+
+
+      	connect();
+      	
        
-          ps= con.prepareStatement("insert into User values (?,?,?,?,?,?,?,?,?,?)");
+          ps= con.prepareStatement("insert into User values (?,?,?,?,?,?,?,?,?)");
           
-          
-          	ps.setString(2,s5);
-            ps.setString(3,s);
-            ps.setString(4,s1);
-            ps.setString(5,s2);
-            ps.setString(6,s3);
-           ps.setString(7,s4);
+			 ps.setInt(1,0);
+			ps.setString(2,null);
+			 ps.setString(3,s);
+			 ps.setString(4,s1);
+			ps.setString(5,s2);
+			ps.setString(6,s3);
+			ps.setString(7,s4);
+			ps.setInt(8,0);
+			ps.setString(9, session.getId());
                int addResult = ps.executeUpdate();
              if (addResult!=0)
             {
