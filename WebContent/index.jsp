@@ -51,14 +51,15 @@ article {
    <td width="205" height="89"><img src="pictures/logo.png" width="251" height="88" alt="Logo" />
     <hr /></td>
         <td width="713" class="right">Welcome to CP shopping! | <a href="index.jsp">Home</a> | <a href="listProduct.jsp">All Product</a>
-        <% if(user_id == 0) {
-			%>
-           | <a href="login.jsp">Login</a> | <a href="register.jsp">Signup</a> | <a href="showCart.jsp">ShoppingCart</a>
+            <%
+            if(user_id == 0) {
+            %>
+            | <a href="login.jsp">Login</a> | <a href="register.jsp">Signup</a> | <a href="showCart.jsp">ShoppingCart</a>
             <%} else {
-				%>
-                <a href="logout.jsp">Logout</a>
-                <%}%>
-                </td>
+            %>
+            <a href="logout.jsp">Logout</a>
+            <%}%>
+        </td>
       </tr>
       <tr>
         <td><form id="form1" name="form1" method="post" action="search.jsp">

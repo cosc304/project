@@ -33,6 +33,7 @@ if(user_id == 0) {
 <%
 if(user_id != 0) {
     session.invalidate();
+    session = request.getSession();
     out.println("You have successfully logged out.");
 } else {
 %>
