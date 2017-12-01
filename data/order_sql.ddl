@@ -82,9 +82,9 @@ INSERT INTO Location VALUES
 (NULL,'554 Name Ave','F3D7H4','Seattle','WA','USA');
 
 INSERT INTO User VALUES
-(NULL,1,'johnnyboy','plainpass','john@doe.ca','John','Doe',0),
-(NULL,2,'siteadmin','adminpass','admin@localhost','Mister','Admin',1),
-(NULL,NULL,'vagrant','password','guy@outlook.com','Mysterious','Stanger',0);
+(NULL,1,'johnnyboy','plainpass','john@doe.ca','John','Doe',0,NULL),
+(NULL,2,'siteadmin','adminpass','admin@localhost','Mister','Admin',1,NULL),
+(NULL,NULL,'vagrant','password','guy@outlook.com','Mysterious','Stanger',0,NULL);
 
 INSERT INTO Product VALUES
 (NULL,1000.00,10,'iPhone X','Phones','Pushing monetary boundries',NULL),
