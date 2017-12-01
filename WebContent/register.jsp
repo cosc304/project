@@ -1,84 +1,52 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>REG</title>
+<title>Untitled Document</title>
 <style type="text/css">
-.right {text-align: right;
+.right {	text-align: right;
 }
 </style>
 </head>
 
 <body>
-<header>
+ <header>
 
   
-   <a href="index.jsp">Home</a> |
-     <style>
-.mainRight{
-
-}
-</style>
- <% if(session.getAttribute("uname")==null) { 
+   <a href="main.jsp">Home</a> |
+      <% if(session.getAttribute("uname")==null) { 
 			%>
-      <a href="login.jsp" class = "mainRight">Login</a>
+      <a href="login.jsp">Login</a>
        <%} else {
 				%>
-       <a href="logout.jsp" class = "mainRight"><%out.print(session.getAttribute("uname"));  %></a> <% //showing user name if user logged in%>
-        <%}%>  
+       <a href="logout.jsp"><%out.print(session.getAttribute("uname"));  %></a> <a href="logout.jsp">Logout</a><% //showing user name if user logged in%>
+        <%}%>
  </header>
  <center> 
-<table width="900" height="120" border="0">
+<table width="900" height="120" border="0" border-color = "green">
   <tr>
-    <td width="251" height="96"> <!-- <img src="head.png" width="251" height="88" alt="Logo" /></td>//NO IMAGE -->
+    <td width="240" height="85"><img src="head.png" width="251" height="88" alt="Logo" /></td><%//NO IMAGE %>
   </tr>
 </table>
-        <%@ page import="java.sql.*" %>
-         <%@ page import="java.sql.DriverManager.*" %>
-       
-<%
- //       String m=null, mn=null;
-
-        String s=request.getParameter("userName");
-        String s1=request.getParameter("password");
-        String s2=request.getParameter("email");
-        String s3=request.getParameter("firstname");
-        String s4=request.getParameter("lastname");
-		String s5=request.getParameter("loc_id");
-		
-        PreparedStatement ps;
-        Connection con;
-        ResultSet rs= null;
-       Class.forName("oracle.jdbc.driver.OracleDriver");
-        con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","sizgooml");
-      
-         Statement st=con.createStatement();
-       
-          ps= con.prepareStatement("insert into User values (?,?,?,?,?,?,?,?,?,?)");
-          
-          
-          	ps.setString(2,s5);
-            ps.setString(3,s);
-            ps.setString(4,s1);
-            ps.setString(5,s2);
-            ps.setString(6,s3);
-           ps.setString(7,s4);
-               int addResult = ps.executeUpdate();
-             if (addResult!=0)
-            {
-                 out.println("Successfully registered");
-            }          
-        %>
-        <br><hr>
-<script>
-function Redirect()
-{
-    window.location="index.jsp";
-}
-document.write("Redirecting you to the main page in just a few seconds.");
-setTimeout('Redirect()', 5000);
-</script>
-   <hr>
+   <strong><em>Register here</em></strong>
+   <form action="registration_process.jsp"><table><b>
+            <tr><td>User Name   </td><td><input type="text" name="userName"></td></tr>
+            <tr><td>Password   </td><td><input type="password" name="password"></td></tr>
+            <tr><td>Email      </td><td><input type="email" name="email"></td></tr>
+            <tr><td>First Name </td><td><input type="text" name="firstname"></td></tr>
+            <tr><td>Last Name  </td><td><input type="text" name="lastname"></td></tr>
+            <tr><td>Location id</td><td><input type="text" name="loc_id"></td></tr>
+                
+                
+                <br>
+                </b></table><br />
+     <input type="submit" value="Register" />
+                    </form>
+            <br><hr>
+           Are You Already Registered? To Login Click<a href="login.jsp"> Here</a>
+                <hr>
+                
+    </center>
 </body>
 </html>
