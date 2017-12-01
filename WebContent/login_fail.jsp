@@ -1,4 +1,4 @@
-<%@ page language="java" charset=utf-8"  import="java.sql.*" " %>
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DtD XHtML 1.0 transitional//EN" "http://www.w3.org/tR/xhtml1/DtD/xhtml1-transitional.dtd">
 <html>
 <head>

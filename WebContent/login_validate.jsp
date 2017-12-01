@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.io.*" import="java.sql.*" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" import="java.io.*" %>
 <%@ include file="db.jsp" %>
 <%
 PreparedStatement pstmt;
