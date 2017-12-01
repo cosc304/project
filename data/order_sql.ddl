@@ -27,7 +27,6 @@ CREATE TABLE User (
   lastname varchar(32),
   admin tinyint,
   session_id varchar(32),
-  session_expire timestamp,
   PRIMARY KEY (id),
   FOREIGN KEY (location_id) REFERENCES Location(id)
 );
