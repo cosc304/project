@@ -79,8 +79,7 @@ section {
 				<td><%=rs.getDouble(3)%></td>
 				<td width="185" class="center1">
 					<form action="productDetail.jsp">
-						<input type="hidden" name="product_id" value="<%=rs.getInt(1)%>">
-						<input name="buy" type="image" value="Image" src="data:image/gif;base64,<%=imgDataBase64%>" width="73" height="105">
+						<input name="product_id" type="image" value="<%=rs.getInt(1)%>" src="data:image/gif;base64,<%=imgDataBase64%>" width="73" height="105">
 					</form>
 				</td>
 			</tr>
