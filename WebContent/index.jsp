@@ -57,27 +57,27 @@ article {
           </tr>
           <tr>
             <td><form action="products.jsp">
-            <input type="button" name="category" value="Mouse" /></form></td>
+            <input type="submit" name="category" value="Mouse" /></form></td>
           </tr>
           <tr>
             <td><form action="products.jsp">
-            <input type="button" name="category" value="Keyboard" /></form></td>
+            <input type="submit" name="category" value="Keyboard" /></form></td>
           </tr>
           <tr>
             <td><form action="products.jsp">
-            <input type="button" name="category" value="Headphone" /></form></td>
+            <input type="submit" name="category" value="Headphone" /></form></td>
           </tr>
           <tr>
             <td height="22"><form action="products.jsp">
-            <input type="button" name="category" value="PSU" /></form></td>
+            <input type="submit" name="category" value="PSU" /></form></td>
           </tr>
           <tr>
             <td><form action="products.jsp">
-            <input type="button" name="category" value="Case" /></form></td>
+            <input type="submit" name="category" value="Case" /></form></td>
           </tr>
           <tr>
             <td><form action="products.jsp">
-            <input type="button" name="category" value="RAM" /></form></td>
+            <input type="submit" name="category" value="RAM" /></form></td>
           </tr>
         </table></td>
       </tr>
