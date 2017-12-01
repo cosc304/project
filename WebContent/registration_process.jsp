@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" errorPage="" %>
 <%@ include file= "session.jsp" %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -22,7 +24,7 @@
 }
 </style>
  <% if(user_id==0) { 
-			%>
+%>
       <a href="login.jsp" class = "mainRight">Login</a>
        <%} else {
 				%>
@@ -35,7 +37,6 @@
     <td width="251" height="96"> <!-- <img src="head.png" width="251" height="88" alt="Logo" /></td>//NO IMAGE -->
   </tr>
 </table>
-
        
 <%
  //       String m=null, mn=null;
