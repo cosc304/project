@@ -1,6 +1,5 @@
-<%@ page import="java.sql.*" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" %>
 <%@ page import="java.text.NumberFormat" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF8"%>
 <%@ include file="db.jsp" %>
 
 <!DOCTYPE html>

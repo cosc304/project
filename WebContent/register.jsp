@@ -31,12 +31,14 @@
 </table>
    <strong><em>Register here</em></strong>
    <form action="registration_process.jsp"><table><b>
-           <tr><td>Name</td><td><input type="text" name="name"></td></tr>
-            <tr><td>User ID</td><td><input type="text" name="id"></td></tr>
-            <tr><td>Password</td><td><input type="password" name="password"></td></tr>
-            <tr><td>Phone No.</td><td><input type="text" name="phone"></td></tr>
-            <tr><td>Date of Birth</td><td><input type="text" name="date"></td></tr>
-            <tr><td>Address</td><td><textarea name="address"></textarea></td></tr>
+            <tr><td>User Name   </td><td><input type="text" name="userName"></td></tr>
+            <tr><td>Password   </td><td><input type="password" name="password"></td></tr>
+            <tr><td>Email      </td><td><input type="email" name="email"></td></tr>
+            <tr><td>First Name </td><td><input type="text" name="firstname"></td></tr>
+            <tr><td>Last Name  </td><td><input type="text" name="lastname"></td></tr>
+            <tr><td>Location id</td><td><input type="text" name="loc_id"></td></tr>
+                
+                
                 <br>
                 </b></table><br />
      <input type="submit" value="Register" />

@@ -12,6 +12,13 @@ public String user_lastname;
 %>
 
 <%
+user_session_id = null;
+users_with_session_id = 0;
+user_id = 0;
+user_username = null;
+user_email = null;
+user_firstname = null;
+user_lastname = null;
 user_session_id = session.getId();
 connect();
 PreparedStatement pstmt = con.prepareStatement(

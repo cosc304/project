@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" %>
+<%@ include file="session.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +29,7 @@ nav ul {
     list-style-type: none;
     padding: 0;
 }
-   
+
 nav ul a {
     text-decoration: none;
 }
@@ -49,14 +51,15 @@ article {
    <td width="205" height="89"><img src="pictures/logo.png" width="251" height="88" alt="Logo" />
     <hr /></td>
         <td width="713" class="right">Welcome to CP shopping! | <a href="index.jsp">Home</a> | <a href="listProduct.jsp">All Product</a>
-        <% if(session.getAttribute("uname")==null) {
-			%>
-           | <a href="login.jsp">Login</a> | <a href="register.jsp">Signup</a> | <a href="showCart.jsp">ShoppingCart</a>
+            <%
+            if(user_id == 0) {
+            %>
+            | <a href="login.jsp">Login</a> | <a href="register.jsp">Signup</a> | <a href="showCart.jsp">ShoppingCart</a>
             <%} else {
-				%>
-                <a href="logout.jsp">Logout</a>
-                <%}%>
-                </td>
+            %>
+            <a href="logout.jsp">Logout</a>
+            <%}%>
+        </td>
       </tr>
       <tr>
         <td><form id="form1" name="form1" method="post" action="search.jsp">
@@ -67,7 +70,7 @@ article {
         </form></td>
       </tr>
 </header>
-  
+
 <nav>
   <ul>
     <tr>
@@ -134,7 +137,6 @@ article {
                 <td><form action="productDetail.jsp"> 
 <input type="hidden" name="product" value="Case01"> 
 <input name="buy" type="image" value="case1" src="pictures\Case01.png" width="104" height="165"> 
-</form></td>
               </tr>
             </table>
               <p class="center1">A++ case</p>

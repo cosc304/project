@@ -1,67 +1,37 @@
-<%@ page language="java" import="java.io.*" import="java.sql.*" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" import="java.io.*" %>
+<%@ include file="db.jsp" %>
 <%
-
 PreparedStatement pstmt;
-Connection con;
-ResultSet rs= null;
-Class.forName("oracle.jdbc.driver.OracleDriver");
-con=DriverManager.getConnection("cosc");
+int rows_updated = 0;
 
-  Statement st=con.createStatement();
-%> 
-<% 
-boolean flag = false; 
+String usrnm = request.getParameter ("usrnm");
+String pswrd = request.getParameter ("pswrd");
 
-String unameid = request.getParameter ("uid"); 
-String pass = request.getParameter ("password"); 
-%>
+String sql = "UPDATE User SET session_id=? WHERE username=? And password=?";
 
-<% 
-
-String sql = "SELECT name from register1 where id=? And password =?"; //CHANGE THIS TO CUSTOMERS ID TO USERID 
-
-try {  
-pstmt = con.prepareStatement (sql); 
-pstmt.setString(1,unameid); 
-pstmt.setString(2,pass); 
-rs = pstmt.executeQuery(); 
-if (rs.next ()) { 
-out.println (rs.getString ("unameid")); 
-flag = true; 
-session.setAttribute("uname", rs.getString ("unameid")); 
-} else { 
-//request.setAttribute("err", "user name or password error!"); //DONT KNOW WHAT ERR IS
-
-flag = false;
+try {
+    connect();
+    pstmt = con.prepareStatement (sql);
+    pstmt.setString(1,session.getId());
+    pstmt.setString(2,usrnm);
+    pstmt.setString(3,pswrd);
+    rows_updated = pstmt.executeUpdate();
+} catch (Exception e) {
+    out.println (e);
 }
+disconnect();
 
-rs.close (); 
-pstmt.close (); 
-con.close ();
-
-} catch (Exception e) { 
-out.println (e); 
-} 
+if (rows_updated == 1) {
 %>
-
-
-<% 
-
-if (flag) { 
-
-%>
-
-<jsp:forward page="login_succeed.jsp" />
-
+    <jsp:forward page="login_succeed.jsp" />
 <%
-
-} 
-else { 
+} else if(rows_updated == 0) {
 %>
-
-<jsp:forward page="login_fail.jsp"/> 
-<% 
-} 
+    <jsp:forward page="login_fail.jsp"/>
+<%
+} else {
+    out.println("More than one user session found!");
+}
 %>
 </body>
 </html>
