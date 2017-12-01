@@ -76,27 +76,27 @@ article {
             <td class="normal">PC Parts</td>
           </tr>
           <tr>
-            <td><form action="category.jsp">
+            <td><form action="listproductByCate.jsp">
             <input type="button" name="category" value="Mouse" /></form></td>
           </tr>
           <tr>
-            <td><form action="category.jsp">
+            <td><form action="listproductByCate.jsp">
             <input type="button" name="category" value="Keyboard" /></form></td>
           </tr>
           <tr>
-            <td><form action="category.jsp">
+            <td><form action="listproductByCate.jsp">
             <input type="button" name="category" value="Headphone" /></form></td>
           </tr>
           <tr>
-            <td height="22"><form action="category.jsp">
+            <td height="22"><form action="listproductByCate.jsp">
             <input type="button" name="category" value="PSU" /></form></td>
           </tr>
           <tr>
-            <td><form action="category.jsp">
+            <td><form action="listproductByCate.jsp">
             <input type="button" name="category" value="Case" /></form></td>
           </tr>
           <tr>
-            <td><form action="category.jsp">
+            <td><form action="listproductByCate.jsp">
             <input type="button" name="category" value="RAM" /></form></td>
           </tr>
         </table></td>
@@ -110,35 +110,35 @@ article {
           <tr>
             <td width="228"><table width="120" height="173" border="0" align="center">
               <tr>
-                <td><form action="product.jsp"> 
+                <td><form action="productDetail.jsp"> 
 <input type="hidden" name="product" value="Mouse01"> 
-<input name="buy" type="image" value="grand" src="pictures\Mouse01.png" width="114" height="165"> 
+<input name="buy" type="image" value="mouse1" src="pictures\Mouse01.png" width="114" height="165"> 
 </form></td>
               </tr>
             </table>
-              <p class="center1">Good Mouse</p>
-              <p class="center1">$150</p>
+              <p class="center1">AA+ Mouse</p>
+              <p class="center1">$200</p>
             </td>
             <td width="240" class="center1"><table width="117" height="173" border="0" align="center">
               <tr>
-                <td width="111"><form action="product.jsp"> 
+                <td width="111"><form action="productDetail.jsp"> 
 <input type="hidden" name="product" value="Mouse02">
-<input name="buy" type="image" value="s4" src="pictures\Mouse02.png" width="100" height="165"> 
+<input name="buy" type="image" value="mouse2" src="pictures\Mouse02.png" width="100" height="165"> 
 </form></td>
               </tr>
             </table></p>
-              <p>Normal Mouse</p>
-              <p>$75</p></td>
+              <p>A+ Mouse</p>
+              <p>$100</p></td>
             <td width="224"><table width="120" height="173" border="0" align="center">
               <tr>
-                <td><form action="product.jsp"> 
+                <td><form action="productDetail.jsp"> 
 <input type="hidden" name="product" value="Case01"> 
-<input name="buy" type="image" value="g pro" src="pictures\Case01.png" width="104" height="165"> 
+<input name="buy" type="image" value="case1" src="pictures\Case01.png" width="104" height="165"> 
 </form></td>
               </tr>
             </table>
-              <p class="center1">Good case</p>
-              <p class="center1">$112</p>
+              <p class="center1">A++ case</p>
+              <p class="center1">$200</p>
             </td>
           </tr>
         </table></td>
