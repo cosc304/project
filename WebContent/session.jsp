@@ -9,6 +9,7 @@ public String user_username;
 public String user_email;
 public String user_firstname;
 public String user_lastname;
+public Boolean user_admin;
 %>
 
 <%
@@ -19,10 +20,11 @@ user_username = null;
 user_email = null;
 user_firstname = null;
 user_lastname = null;
+user_admin = false;
 user_session_id = session.getId();
 connect();
 PreparedStatement session_pstmt = con.prepareStatement(
-	"SELECT id,username,email,firstname,lastname FROM User WHERE session_id = ?"
+	"SELECT id,username,email,firstname,lastname,admin FROM User WHERE session_id = ?"
 );
 session_pstmt.setString(1, user_session_id);
 ResultSet session_rs = session_pstmt.executeQuery();
@@ -34,6 +36,7 @@ while(session_rs.next()) {
 	user_email = session_rs.getString(3);
 	user_firstname = session_rs.getString(4);
 	user_lastname = session_rs.getString(5);
+	user_admin = session_rs.getBoolean(6);
 }
 disconnect();
 %>
