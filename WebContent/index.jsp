@@ -124,7 +124,7 @@ article {
       </tr>
 </article>
 
-<footer>Copyright &copy; CP.com</footer>
+<footer>Copyright &copy; LegitimateComputerGoods.com</footer>
 
 </div>
 

@@ -1,6 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" import="java.util.Base64" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" import="java.text.NumberFormat" %>
 <%@ include file="session.jsp" %>
-<%@ page import="java.text.NumberFormat" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +24,10 @@ section {
 	padding: 1em;
 	overflow: hidden;
 }
+
+section img {
+	max-height: 128px;
+}
 </style>
 </head>
 <body>
@@ -34,40 +37,42 @@ section {
 <%@ include file="header.jsp" %>
 
 	<section>
-	
-		<table width="992" height="179" border="1">
+
 		<%
-		String category = request.getParameter("product_id");
+		String pid = request.getParameter("pid");
 		NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 		PreparedStatement ps;
 		ResultSet rs;
 		ResultSetMetaData rsmd;
-    //currFormat.format(rs.getBytes(3))
+		//currFormat.format(rs.getBytes(3))
 		connect();
-		
-		ps = con.prepareStatement("select id Id, name Name, price Price, description Description, category Category from Product");
+
+		ps = con.prepareStatement("SELECT id Id, name Name, price Price, description Description, category Category FROM Product WHERE id=?");
+		ps.setString(1,pid);
 		rs = ps.executeQuery();
 		rsmd = rs.getMetaData();
-		rs.next();
+		if(rs.next()) {
 		%>
-		
-		<table border ="red solid 1px">
-		<tr><td>Product Id</td><td>Product Name</td><td>Price</td><td>Category</td> </tr>
-		<tr><td><%=rs.getInt(1) %></td><td><%=rs.getString(2) %></td><td><%=rs.getString(3) %></td><td><%=rs.getString(4) %></td> </tr>
-		</table>
-		
-		<form action="addcart.jsp" method="post">
-		<input type = "submit" name="product_id" value="<%=rs.getInt(1) %>">Add to cart</a>
-		</form>
-		
-		
-	
+
+			<img src="/image?pid=<%=rs.getInt(1)%>" />
+			<table border ="red solid 1px">
+			<thead><tr><th><%=rsmd.getColumnLabel(1)%></th><th><%=rsmd.getColumnLabel(2)%></th><th><%=rsmd.getColumnLabel(3)%></th><th><%=rsmd.getColumnLabel(4)%></th></tr></thead>
+			<tbody><tr><td><%=rs.getInt(1)%>          </td><td><%=rs.getString(2)%>       </td><td><%=rs.getString(3)%>       </td><td><%=rs.getString(4)%>       </td></tr></tbody>
+			</table>
+
+			<form action="addcart.jsp" method="post">
+			<button name="pid" value="<%=rs.getInt(1)%>" type="submit">Add to cart</button>
+			</form>
+
+		<%
+		}
+		%>
+
 	</section>
 
-	<footer>Copyright &copy; CP.com</footer>
+	<footer>Copyright &copy; LegitimateComputerGoods.com</footer>
 
 </div>
-<% %>
 
 </body>
 </html>

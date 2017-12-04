@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" import="java.util.Base64" %>
+<%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" %>
 <%@ include file="session.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -33,7 +33,7 @@ table input {
 	width: 100%;
 }
 
-table input[type=image] {
+table img {
 	max-height: 64px;
 	width: auto;
 }
@@ -142,23 +142,16 @@ table input[type=image] {
 		<tbody>
 		<%
 		while(rs.next()) {
-			byte[] imgData = rs.getBytes(5);
-			String imgDataBase64;
-			if(imgData != null) {
-				imgDataBase64 = Base64.getEncoder().encodeToString(imgData);
-			} else {
-				imgDataBase64 = "";
-			}
 		%>
-			<tr>
+			<tr id="pid_<%=rs.getInt(1)%>">
 				<td><%=rs.getInt(1)%></td>
 				<td><%=rs.getString(2)%></td>
 				<td><%=rs.getString(3)%></td>
 				<td><%=rs.getDouble(4)%></td>
 				<td class="center1">
-					<form action="productDetail.jsp">
-						<input name="product_id" type="image" value="<%=rs.getInt(1)%>" src="data:image/jpg;base64,<%=imgDataBase64%>">
-					</form>
+					<a href="/productDetail.jsp?pid=<%=rs.getInt(1)%>">
+						<img src="/image?pid=<%=rs.getInt(1)%>" />
+					</a>
 				</td>
 			</tr>
 		<%
@@ -170,7 +163,7 @@ table input[type=image] {
 		</p>
 	</section>
 
-	<footer>Copyright &copy; CP.com</footer>
+	<footer>Copyright &copy; LegitimateComputerGoods.com</footer>
 
 </div>
 
