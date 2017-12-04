@@ -153,6 +153,15 @@ table img {
 						<img src="/image?pid=<%=rs.getInt(1)%>" />
 					</a>
 				</td>
+				<%
+				if(user_admin) {
+				%>
+				<td>
+					<input class="edit" type="button" name="edit_<%=rs.getInt(1)%>" value="Edit" />
+				</td>
+				<%
+				}
+				%>
 			</tr>
 		<%
 		}

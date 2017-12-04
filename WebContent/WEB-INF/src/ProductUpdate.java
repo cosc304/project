@@ -107,8 +107,7 @@ public class ProductUpdate extends HttpServlet {
         }
 
         if (rows_updated == 1 || rows_updated == 2) {
-            RequestDispatcher view = request.getRequestDispatcher("/products.jsp");
-            view.forward(request,response);
+            response.sendRedirect("/products.jsp");
         } else if (rows_updated == 0) {
             out.println("No rows updated.");
         } else {
