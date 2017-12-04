@@ -102,7 +102,7 @@ a img {
             while(rs.next()) {
                 %>
                     <td>
-                    <a href="/productDetail?pid=<%=rs.getInt(1)%>">
+                    <a href="/productDetail.jsp?pid=<%=rs.getInt(1)%>">
                         <img height="128px" src="/image?pid=<%=rs.getInt(1)%>" />
                         <p class="center1"><%=rs.getString(2)%></p>
                     </a>
@@ -121,7 +121,7 @@ a img {
         while(rs.next()) {
             %>
                 <td>
-                <a href="/productDetail?pid=<%=rs.getInt(1)%>">
+                <a href="/productDetail.jsp?pid=<%=rs.getInt(1)%>">
                     <img height="128px" src="/image?pid=<%=rs.getInt(1)%>" />
                     <p class="center1"><%=rs.getString(2)%></p>
                 </a>
@@ -137,7 +137,7 @@ a img {
         while(rs.next()) {
             %>
                 <td>
-                <a href="/productDetail?pid=<%=rs.getInt(1)%>">
+                <a href="/productDetail.jsp?pid=<%=rs.getInt(1)%>">
                     <img height="128px" src="/image?pid=<%=rs.getInt(1)%>" />
                     <p class="center1"><%=rs.getString(2)%></p>
                 </a>
