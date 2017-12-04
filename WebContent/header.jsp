@@ -9,7 +9,7 @@
             | <a href="login.jsp">Login</a> | <a href="register.jsp">Signup</a> | <a href="showCart.jsp">ShoppingCart</a>
             <%} else {
             %>
-            | <a href="logout.jsp">Logout</a>
+            | <a href="listorder.jsp">Your Orders</a> | <a href="logout.jsp">Logout</a>
             <%}%>
         </td>
       </tr>

@@ -1,11 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" import="java.sql.*" %>
 <%@ page import="java.text.NumberFormat" %>
-<%@ include file="db.jsp" %>
+<%@ include file="session.jsp" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>YOUR NAME Grocery Order List</title>
+<title>Orders</title>
 </head>
 <body>
 
@@ -22,12 +22,13 @@ NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 connect();
 PreparedStatement pstmt1 = con.prepareStatement(
 	"SELECT O.id AS order_id,U.id AS user_id,U.firstname,U.lastname,O.total FROM `Order` O, User U WHERE "+
-	"O.user_id = U.id"
+	"O.user_id = U.id AND U.id = ?"
 );
 PreparedStatement pstmt2 = con.prepareStatement(
-	"SELECT P.id AS product_id, quantity, P.price FROM OrderProduct OP, Product P WHERE "+
+	"SELECT P.id AS product_id, quantity, P.price, P.name FROM OrderProduct OP, Product P WHERE "+
 	"OP.product_id = P.id AND OP.order_id = ?"
 );
+pstmt1.setInt(1, user_id);
 ResultSet rs1 = pstmt1.executeQuery();
 ResultSet rs2;
 ResultSetMetaData rsmd1 = rs1.getMetaData();
@@ -56,7 +57,7 @@ while(rs1.next()) {
 	}
 	out.println("</td></tr></thead><tbody>");
 	while(rs2.next()) {
-		out.println("<tr><td>"+rs2.getInt(1)+"</td><td>"+rs2.getInt(2)+"</td><td>"+currFormat.format(Double.parseDouble(rs2.getString(3)))+"</td></tr>");
+		out.println("<tr><td>"+rs2.getInt(1)+"</td><td>"+rs2.getInt(2)+"</td><td>"+currFormat.format(Double.parseDouble(rs2.getString(3)))+"</td><td>"+rs2.getString(4)+"</td></tr>");
 	}
 	out.println("</tbody></table></tr>");
 }
