@@ -9,16 +9,14 @@
             | <a href="login.jsp">Login</a> | <a href="register.jsp">Signup</a> | <a href="showCart.jsp">ShoppingCart</a>
             <%} else {
             %>
-            <a href="logout.jsp">Logout</a>
+            | <a href="logout.jsp">Logout</a>
             <%}%>
         </td>
       </tr>
       <tr>
-        <td><form id="form1" name="form1" method="post" action="search.jsp">
-          <input name="search" type="text" id="search" size="60" />
-          <label>
-            <input type="submit" name="submit" id="button" value="Search" />
-          </label>
+        <td><form action="products.jsp" method="post">
+          <input name="name" type="text" id="search" size="60" />
+          <input type="submit" />
         </form></td>
       </tr>
 </header>

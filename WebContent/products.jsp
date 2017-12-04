@@ -24,6 +24,19 @@ section {
 	padding: 1em;
 	overflow: hidden;
 }
+
+table {
+	width: 100%;
+}
+
+table input {
+	width: 100%;
+}
+
+table input[type=image] {
+	max-height: 64px;
+	width: auto;
+}
 </style>
 </head>
 <body>
@@ -34,20 +47,69 @@ section {
 
 	<section>
 		<p>
-		<table width="992" height="179" border="1">
+		<table border="1">
 		<%
-		String category = request.getParameter("category");
-
 		PreparedStatement ps;
 		ResultSet rs;
 		ResultSetMetaData rsmd;
 
+		String sql= "select id Id, category Category, name Name, price Price, image Image from Product WHERE 1=1";
+		String id = request.getParameter("id");
+		if (id != null) {
+			sql += " AND id=?";
+		}
+		String category = request.getParameter("category");
+		if (category != null) {
+			sql += " AND category=?";
+		}
+		String name = request.getParameter("name");
+		if (name != null) {
+			sql += " AND name LIKE CONCAT('%',?,'%')";
+		}
+		String price = request.getParameter("price");
+		String price_compare = request.getParameter("price_compare");
+		if (price != null) {
+			if(price_compare != null) {
+				switch(price_compare) {
+					case "eq":
+						sql += " AND price=?";
+						break;
+					case "ge":
+						sql += " AND price>=?";
+						break;
+					case "le":
+						sql += " AND price<=?";
+						break;
+					case "gt":
+						sql += " AND price>?";
+						break;
+					case "lt":
+						sql += " AND price<?";
+						break;
+				}
+			}
+			else {
+				sql += " AND price=?";
+			}
+		}
+		int idx = 1;
 		connect();
-		if(category == null) {
-			ps = con.prepareStatement("select id Id, name Name, price Price, image Image, category Category from Product");
-		} else {
-			ps = con.prepareStatement("select id Id, name Name, price Price, image Image, category Category from Product where category=?");
-			ps.setString(1, category);
+		ps = con.prepareStatement(sql);
+		if (id != null) {
+			ps.setString(idx, id);
+			idx++;
+		}
+		if (category != null) {
+			ps.setString(idx, category);
+			idx++;
+		}
+		if (name != null) {
+			ps.setString(idx, name);
+			idx++;
+		}
+		if (price != null) {
+			ps.setString(idx, price);
+			idx++;
 		}
 		rs = ps.executeQuery();
 		rsmd = rs.getMetaData();
@@ -56,7 +118,7 @@ section {
 			<%
 			if(user_admin) {
 			%>
-			<form action="productUpdate.jsp" method="post" enctype="multipart/form-data">
+			<form action="productUpdate" method="post" enctype="multipart/form-data">
 				<tr id="edit_row">
 					<td><input name="product_id" type="number" /></td>
 					<td><input name="category" type="text" /></td>
@@ -71,16 +133,16 @@ section {
 			%>
 			<tr>
 				<th><%=rsmd.getColumnLabel(1)%></th>
-				<th><%=rsmd.getColumnLabel(5)%></th>
 				<th><%=rsmd.getColumnLabel(2)%></th>
 				<th><%=rsmd.getColumnLabel(3)%></th>
 				<th><%=rsmd.getColumnLabel(4)%></th>
+				<th><%=rsmd.getColumnLabel(5)%></th>
 			</tr>
 		</thead>
 		<tbody>
 		<%
 		while(rs.next()) {
-			byte[] imgData = rs.getBytes(4);
+			byte[] imgData = rs.getBytes(5);
 			String imgDataBase64;
 			if(imgData != null) {
 				imgDataBase64 = Base64.getEncoder().encodeToString(imgData);
@@ -91,12 +153,12 @@ section {
 		%>
 			<tr id="pid_<%=rs.getInt(1)%>">
 				<td><%=rs.getInt(1)%></td>
-				<td><%=rs.getString(5)%></td>
 				<td><%=rs.getString(2)%></td>
-				<td><%=rs.getDouble(3)%></td>
-				<td width="185" class="center1">
+				<td><%=rs.getString(3)%></td>
+				<td><%=rs.getDouble(4)%></td>
+				<td class="center1">
 					<form action="productDetail.jsp">
-						<input name="product_id" type="image" value="<%=rs.getInt(1)%>" src="data:image/jpg;base64,<%=imgDataBase64%>" width="73" height="105">
+						<input name="product_id" type="image" value="<%=rs.getInt(1)%>" src="data:image/jpg;base64,<%=imgDataBase64%>">
 					</form>
 				</td>
 				<%
@@ -125,13 +187,15 @@ section {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <%if(user_admin) {%>
 <script>
-$('.edit').click(function(){
-	var row = $(this).parent().parent();
+$(document).ready(function(){
+	$('.edit').click(function(){
+		var row = $(this).parent().parent();
 
-	$('#edit_row td:nth-child(1) input').val(parseInt($('td:nth-child(1)', row).text()));
-	$('#edit_row td:nth-child(2) input').val($('td:nth-child(2)', row).text());
-	$('#edit_row td:nth-child(3) input').val($('td:nth-child(3)', row).text());
-	$('#edit_row td:nth-child(4) input').val(parseFloat($('td:nth-child(4)', row).text()));
+		$('#edit_row td:nth-child(1) input').val(   parseInt($('td:nth-child(1)', row).text()));
+		$('#edit_row td:nth-child(2) input').val(            $('td:nth-child(2)', row).text());
+		$('#edit_row td:nth-child(3) input').val(            $('td:nth-child(3)', row).text());
+		$('#edit_row td:nth-child(4) input').val(parseFloat( $('td:nth-child(4)', row).text()));
+	});
 });
 </script>
 <%}%>

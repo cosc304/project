@@ -24,7 +24,7 @@ public class LoadData
 		System.out.println("Connecting to database.");
 		Connection con = DriverManager.getConnection(url, uid, pw);
 
-		String fileName = "../data/order_sql.ddl";
+		String fileName = "../../data/sql.ddl";
 
 	    try
 	    {

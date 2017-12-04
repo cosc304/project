@@ -38,7 +38,7 @@ CREATE TABLE Product (
   name varchar(32),
   category varchar(32),
   description text,
-  image blob,
+  image longblob,
   PRIMARY KEY (id)
 );
 
@@ -76,6 +76,36 @@ CREATE TABLE WarehouseProduct (
   FOREIGN KEY (warehouse_id) REFERENCES Warehouse(id),
   FOREIGN KEY (product_id) REFERENCES Product(id)
 );
+
+CREATE TRIGGER OrderTotalInsert
+AFTER INSERT ON OrderProduct
+FOR EACH ROW
+UPDATE `Order` O
+   SET O.total = 
+    (SELECT SUM(P.price*OP.quantity) 
+      FROM Product P, OrderProduct OP
+      WHERE P.id = OP.product_id AND OP.order_id = O.id)
+WHERE O.id = NEW.order_id;
+
+CREATE TRIGGER OrderTotalUpdate
+AFTER UPDATE ON OrderProduct
+FOR EACH ROW
+UPDATE `Order` O
+   SET O.total = 
+    (SELECT SUM(P.price*OP.quantity) 
+      FROM Product P, OrderProduct OP
+      WHERE P.id = OP.product_id AND OP.order_id = O.id)
+WHERE O.id = NEW.order_id;
+
+CREATE TRIGGER OrderTotalDelete
+AFTER DELETE ON OrderProduct
+FOR EACH ROW
+UPDATE `Order` O
+   SET O.total = 
+    (SELECT SUM(P.price*OP.quantity) 
+      FROM Product P, OrderProduct OP
+      WHERE P.id = OP.product_id AND OP.order_id = O.id)
+WHERE O.id = NEW.order_id;
 
 INSERT INTO Location VALUES
 (NULL,'123 Main Street','B4X2T6','Kelowna','BC','Canada'),
