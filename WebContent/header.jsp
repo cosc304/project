@@ -2,7 +2,7 @@
   <tr>
    <td width="205" height="89"><img src="pictures/logo.png" width="251" height="88" alt="Logo" />
     <hr /></td>
-        <td width="713" class="right">Welcome to Legitimate Computer Goods shopping! | <a href="index.jsp">Home</a> | <a href="products.jsp">All Product</a>
+        <td width="713" class="right">Welcome to CP shopping! | <a href="index.jsp">Home</a> | <a href="products.jsp">All Product</a>
             <%
             if(user_id == 0) {
             %>

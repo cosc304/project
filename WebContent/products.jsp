@@ -146,12 +146,11 @@ table input[type=image] {
 			String imgDataBase64;
 			if(imgData != null) {
 				imgDataBase64 = Base64.getEncoder().encodeToString(imgData);
-				imgData = null;
 			} else {
 				imgDataBase64 = "";
 			}
 		%>
-			<tr id="pid_<%=rs.getInt(1)%>">
+			<tr>
 				<td><%=rs.getInt(1)%></td>
 				<td><%=rs.getString(2)%></td>
 				<td><%=rs.getString(3)%></td>
@@ -161,15 +160,6 @@ table input[type=image] {
 						<input name="product_id" type="image" value="<%=rs.getInt(1)%>" src="data:image/jpg;base64,<%=imgDataBase64%>">
 					</form>
 				</td>
-				<%
-				if(user_admin) {
-				%>
-				<td>
-					<input class="edit" type="button" name="edit_<%=rs.getInt(1)%>" value="Edit" />
-				</td>
-				<%
-				}
-				%>
 			</tr>
 		<%
 		}
@@ -180,7 +170,7 @@ table input[type=image] {
 		</p>
 	</section>
 
-	<footer>Copyright &copy; Legitimate Computer Goods.com</footer>
+	<footer>Copyright &copy; CP.com</footer>
 
 </div>
 

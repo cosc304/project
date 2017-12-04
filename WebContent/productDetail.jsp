@@ -57,15 +57,17 @@ section {
 		</table>
 		
 		<form action="addcart.jsp" method="post">
-		<a href="addcart.jsp">Add to cart</a>
+		<input type = "submit" name="product_id" value="<%=rs.getInt(1) %>">Add to cart</a>
 		</form>
 		
 		
 	
-	
-	<footer>Copyright &copy; Legitimate Computer Goods.com</footer>
+	</section>
+
+	<footer>Copyright &copy; CP.com</footer>
 
 </div>
 <% %>
+
 </body>
 </html>
