@@ -112,40 +112,40 @@ a img {
                 </a>
                 <%
             }
-            sql = "SELECT P.id, P.name, P.price, SUM(P.price*OP.quantity) total FROM Product P, `Order` O, OrderProduct OP "+
-                         "WHERE OP.order_id = O.id AND OP.product_id = P.id "+
-                         "GROUP BY P.id ORDER BY total DESC LIMIT 2";
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while(rs.next()) {
-                %>
-                    <td>
-                    <a href="/productDetail?pid=<%=rs.getInt(1)%>">
-                        <img height="128px" src="/image?pid=<%=rs.getInt(1)%>" />
-                        <p class="center1"><%=rs.getString(2)%></p>
-                    </a>
-                        <p class="center1"><%=rs.getString(3)%></p>
-                        <p class="info">(General Recommendation)</p>
-                    </td>
+        }
+        sql = "SELECT P.id, P.name, P.price, SUM(P.price*OP.quantity) total FROM Product P, `Order` O, OrderProduct OP "+
+                     "WHERE OP.order_id = O.id AND OP.product_id = P.id "+
+                     "GROUP BY P.id ORDER BY total DESC LIMIT 2";
+        ps = con.prepareStatement(sql);
+        rs = ps.executeQuery();
+        while(rs.next()) {
+            %>
+                <td>
+                <a href="/productDetail?pid=<%=rs.getInt(1)%>">
+                    <img height="128px" src="/image?pid=<%=rs.getInt(1)%>" />
+                    <p class="center1"><%=rs.getString(2)%></p>
                 </a>
-                <%
-            }
-            sql = "SELECT id, name, price FROM Product ORDER BY price DESC LIMIT 1";
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while(rs.next()) {
-                %>
-                    <td>
-                    <a href="/productDetail?pid=<%=rs.getInt(1)%>">
-                        <img height="128px" src="/image?pid=<%=rs.getInt(1)%>" />
-                        <p class="center1"><%=rs.getString(2)%></p>
-                    </a>
-                        <p class="center1"><%=rs.getString(3)%></p>
-                        <p class="info">(High-quality product)</p>
-                    </td>
+                    <p class="center1"><%=rs.getString(3)%></p>
+                    <p class="info">(General Recommendation)</p>
+                </td>
+            </a>
+            <%
+        }
+        sql = "SELECT id, name, price FROM Product ORDER BY price DESC LIMIT 1";
+        ps = con.prepareStatement(sql);
+        rs = ps.executeQuery();
+        while(rs.next()) {
+            %>
+                <td>
+                <a href="/productDetail?pid=<%=rs.getInt(1)%>">
+                    <img height="128px" src="/image?pid=<%=rs.getInt(1)%>" />
+                    <p class="center1"><%=rs.getString(2)%></p>
                 </a>
-                <%
-            }
+                    <p class="center1"><%=rs.getString(3)%></p>
+                    <p class="info">(High-quality product)</p>
+                </td>
+            </a>
+            <%
         }
         disconnect();
         %>
